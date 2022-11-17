@@ -1,5 +1,6 @@
 import axios from "axios";
-const BASE_URL = "http://a3-tuiter.eba-p74dydvh.us-east-1.elasticbeanstalk.com/"
+// const BASE_URL = "http://a3-tuiter.eba-p74dydvh.us-east-1.elasticbeanstalk.com/"
+const BASE_URL = "http://localhost:4000/"
 const TUITS_API = `${BASE_URL}/api/tuits`;
 const USERS_API = `${BASE_URL}/api/users`;
 

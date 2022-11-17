@@ -4,7 +4,6 @@ import {HashRouter} from "react-router-dom";
 import {findAllTuits} from "../services/tuits-service";
 import axios from "axios";
 import {UserList} from "../components/profile/user-list";
-import {findAllUsers} from "../services/users-service";
 
 jest.mock('axios');
 
@@ -21,8 +20,10 @@ test('tuit list renders static tuit array', () => {
       <HashRouter>
         <UserList tuits={MOCKED_TUITS}/>
       </HashRouter>);
-  const linkElement = screen.getByText(/alice's tuit/i);
-  expect(linkElement).toBeInTheDocument();
+  const user = screen.getByText(/alice/i);
+  const tuit = screen.getByText(/alice's tuit/i);
+  expect(user).toBeInTheDocument();
+  expect(tuit).toBeInTheDocument();
 });
 
 test('tuit list renders async', async () => {
@@ -31,7 +32,7 @@ test('tuit list renders async', async () => {
       <HashRouter>
         <UserList tuits={tuits}/>
       </HashRouter>);
-  const linkElement = screen.getByText(/alice's tuit/i);
+  const tuit = screen.getByText(/alice's tuit/i);
   expect(linkElement).toBeInTheDocument();
 })
 
