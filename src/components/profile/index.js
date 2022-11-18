@@ -1,4 +1,6 @@
 import * as service from "./auth-service"
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
