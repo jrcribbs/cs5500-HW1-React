@@ -1,5 +1,5 @@
 import {
-  createTuit, deleteTuit,
+  createTuitByUser, deleteTuit,
     findTuitById, findAllTuits
 } from "../services/tuits-service";
 import {
@@ -32,7 +32,7 @@ describe('can create tuit with REST API', () => {
   })
   test('can insert new users with REST API', async () => {
   const newUser = await createUser(ripley);
-  const newTuit = await createTuit(newUser._id, tuit)
+  const newTuit = await createTuitByUser(newUser._id, tuit)
 
   // verify inserted user's properties match parameter user
   expect(newTuit.tuit).toEqual(tuit.tuit);
@@ -58,7 +58,7 @@ describe('can delete tuit with REST API', () => {
   beforeAll(() => {
     // insert the sample tuit we then try to remove
     const user = createUser(ripley);
-    return createTuit(user._id, tuit);
+    return createTuitByUser(user._id, tuit);
   });
 
   // clean up after test runs
@@ -93,7 +93,7 @@ describe('can retrieve a tuit by their primary key with REST API', () => {
   beforeAll(() => {
     // insert the sample tuit we then try to remove
     const user = createUser(ripley);
-    return createTuit(user._id, tuit);
+    return createTuitByUser(user._id, tuit);
   });
 
   // clean up after test runs
@@ -105,7 +105,7 @@ describe('can retrieve a tuit by their primary key with REST API', () => {
   test('can retrieve tuit from REST API by primary key', async () => {
     // insert the user in the database
     const newUser = await createUser(ripley);
-    const newTuit = await createTuit(newUser._id, tuit)
+    const newTuit = await createTuitByUser(newUser._id, tuit)
 
     // verify inserted tuits's properties match parameter tuit
     expect(newTuit.tuit).toEqual(tuit.tuit);
@@ -135,7 +135,7 @@ describe('can retrieve all tuits with REST API', () => {
   beforeAll(() =>
       // insert several known users
       tuits.map(tuit =>
-          createTuit({
+          createTuitByUser({
             tuit,
             postedBy: createUser(ripley)
           })
