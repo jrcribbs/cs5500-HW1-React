@@ -33,4 +33,3 @@ export const deleteTuit = (tid) =>
   axios.delete(`${TUITS_API}/${tid}`)
     .then(response => response.data);
 
-
