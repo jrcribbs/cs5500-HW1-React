@@ -6,10 +6,18 @@ import MyTuits from "./my-tuits";
 //   from "./tuits-and-replies";
 // import Media from "./media";
 import MyLikes from "./my-likes";
+import * as PropTypes from "prop-types";
+
+function Routes(props) {
+  return null;
+}
+
+Routes.propTypes = {children: PropTypes.node};
 
 const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
+
   useEffect(async () => {
     try {
       const user = await service.profile();
@@ -28,15 +36,8 @@ const Profile = () => {
         <h6>@{profile.username}</h6>
         <button onClick={logout}>
           Logout</button>
-        <Link to="/profile/mytuits">
-          Tuits</Link>
-        {/*<Link to="/profile/tuits-and-replies">*/}
-        {/*  Tuits & replies</Link>*/}
-        {/*<Link to="/profile/media">*/}
-        {/*  Media</Link>*/}
-        <Link to="/profile/mylikes">
-          Likes</Link>
-        <Route>
+
+        <Routes>
           <Route path="/mytuits"
                  element={<MyTuits/>}/>
           {/*<Route path="/tuits-and-replies"*/}
@@ -45,8 +46,10 @@ const Profile = () => {
           {/*       element={<Media/>}/>*/}
           <Route path="/mylikes"
                  element={<MyLikes/>}/>
-        </Route>
+        </Routes>
+
       </div>
   );
 };
+
 export default Profile;
