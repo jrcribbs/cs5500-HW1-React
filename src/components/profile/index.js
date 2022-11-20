@@ -1,21 +1,21 @@
 import * as service from "../../services/auth-service"
 import {useEffect, useState} from "react";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Profile = () => {
-  const navigate = useHistory();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState({});
   useEffect(async () => {
     try {
       const user = await service.profile();
       setProfile(user);
     } catch (e) {
-      navigate.push('/login');
+      navigate('/login');
     }
   }, []);
   const logout = () => {
     service.logout()
-    .then(() => navigate.push('/login'));
+    .then(() => navigate('/login'));
   }
   return(
       <div>
