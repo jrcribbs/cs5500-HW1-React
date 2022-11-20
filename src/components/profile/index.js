@@ -6,6 +6,7 @@ import MyTuits from "./my-tuits";
 //   from "./tuits-and-replies";
 // import Media from "./media";
 import MyLikes from "./my-likes";
+import MyDislikes from "./my-dislikes";
 import * as PropTypes from "prop-types";
 
 function Routes(props) {
@@ -36,6 +37,12 @@ const Profile = () => {
         <h6>@{profile.username}</h6>
         <button onClick={logout}>
           Logout</button>
+        <Link to="/profile/mytuits">
+          Tuits</Link>
+        <Link to="/profile/mylikes">
+          Likes</Link>
+        <Link to="/profile/mydislikes">
+          Dislikes</Link>
 
         <Routes>
           <Route path="/mytuits"
@@ -46,6 +53,8 @@ const Profile = () => {
           {/*       element={<Media/>}/>*/}
           <Route path="/mylikes"
                  element={<MyLikes/>}/>
+          <Route path="/mydislikes"
+                 element={<MyDislikes/>}/>
         </Routes>
 
       </div>
