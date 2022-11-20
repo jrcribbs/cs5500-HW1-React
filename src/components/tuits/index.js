@@ -15,7 +15,7 @@ const Tuits = ({tuits = [], deleteTuit,
 
   const dislikeTuit = (tuit) =>
       dislikesService
-      .userTogglesTuitLikes("me", tuit._id)
+      .userTogglesTuitDislikes("me", tuit._id)
       .then(refreshTuits)
       .catch(e => alert(e))
 
