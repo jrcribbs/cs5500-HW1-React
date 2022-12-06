@@ -13,8 +13,9 @@ function Navigation() {
     {label: 'Messages', icon: 'fa-envelope', path: '/messages'},
     {label: 'Bookmarks', icon: 'fa-bookmark', path: '/bookmarks'},
     {label: 'Lists', icon: 'fa-list', path: '/lists'},
+    {label: 'My Polls', icon: 'fa-poll', path: '/polls'},
+    {label: 'My Votes', icon: 'fa-poll', path: '/votes'},
     {label: 'Profile', icon: 'fa-user', path: '/profile'},
-    {label: 'Movies', icon: 'fa-user', path: '/movies'},
     {label: 'More', icon: 'fa-circle-ellipsis', path: '/more'},
     {label: 'Login', icon: 'fa-user', path: '/login'},
   ];
@@ -38,6 +39,8 @@ function Navigation() {
       </div>
       <a href="#" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
         Tuit</a>
+      <a href="#" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
+        Create Poll</a>
     </div>
   );
 };
