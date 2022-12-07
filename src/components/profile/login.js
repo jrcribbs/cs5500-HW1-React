@@ -10,7 +10,7 @@ export const Login = () => {
     // ]);
     const [newUser, setNewUser] = useState({});
     const [loginUser, setLoginUser] = useState({});
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const uuu = [
         {username: 'ellen_ripley', email: 'ellen_ripley', password: 'ellen_ripley', _id: '123'},
@@ -56,7 +56,7 @@ export const Login = () => {
             <input className="mb-2 form-control"
                    onChange={(e) =>
                        setLoginUser({...loginUser, username: e.target.value})}
-                   placeholder="username"/>
+                   placeholder="loginUser"/>
             <input className="mb-2 form-control"
                    onChange={(e) =>
                        setLoginUser({...loginUser, password: e.target.value})}
@@ -66,7 +66,6 @@ export const Login = () => {
             <h1>Login As</h1>
 
             <UserList users={existingUsers} deleteUser={deleteUser}/>
-
 
         </div>
     );
