@@ -37,9 +37,9 @@ function Navigation() {
           })
         }
       </div>
-      <a href="src/components/navigation/index#/home/634466e38306079e670e180d" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
+      <a href="#/home/634466e38306079e670e180d" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
         Tuit</a>
-      <a href="src/components/navigation/index#/pollhome" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
+      <a href="#/pollhome" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
         Create Poll</a>
     </div>
 
