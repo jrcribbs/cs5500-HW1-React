@@ -1,8 +1,6 @@
 import React from "react";
 import "./navigation.css";
 import {useLocation, Link} from "react-router-dom";
-import {createPoll} from "../../services/polls-service";
-import {createTuit} from "../../services/tuits-service";
 
 function Navigation() {
   const {pathname} = useLocation();
@@ -39,9 +37,9 @@ function Navigation() {
           })
         }
       </div>
-      <a href="#/home/634466e38306079e670e180d" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
+      <a href="src/components/navigation/index#/home/634466e38306079e670e180d" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
         Tuit</a>
-      <a href="#" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
+      <a href="src/components/navigation/index#/pollhome" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
         Create Poll</a>
     </div>
 
