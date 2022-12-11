@@ -1,13 +1,22 @@
 import React from "react";
+import Poll from "./Poll";
 
-const Polls = ({poll, deletePoll}) => {
-    if(poll) {
-        const string = poll.question.toString();
-        return <h1>string</h1>
-    } else {
-        return <h1>not here</h1>
-    }
-};
+function Polls({polls = [], deleteTuit}) {
+    return (
+        <div>
+            <h1>My polls</h1>
+            <ul>
+                { polls.map && polls.map(poll => {
+                    return (
+                        <Poll key={poll._id} poll={poll}/>
+                    );
+            })
+        }
+            </ul>
+        </div>
+    );
+}
+
 export default Polls;
 
 

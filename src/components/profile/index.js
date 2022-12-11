@@ -3,6 +3,7 @@ import Tuits from "../tuits";
 import {Link} from "react-router-dom";
 
 const Profile = () => {
+
   return(
     <div className="ttr-profile">
       <div className="border border-bottom-0">

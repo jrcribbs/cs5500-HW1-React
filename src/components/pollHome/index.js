@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Polls from "../polls";
 import * as service from "../../services/polls-service";
 import {useLocation, useParams} from "react-router-dom";
+import {findAllPolls} from "../../services/polls-service";
 
 const PollHome = () => {
     const location = useLocation();
@@ -9,26 +10,50 @@ const PollHome = () => {
     const [polls, setPolls] = useState([]);
     const [poll, setPoll] = useState('');
     let pollId = pid;
-    const find = () => {
-        if(pid) {
-            return service.findPoll(pid)
-                .then(polls => setPolls(polls))
-        } else {
-            return service.findAllPolls()
-                .then(polls => setPolls(polls))
-        }
+
+    // const find = async () => {
+    //     //enforce get all polls
+    //     // let newVar = false
+    //     // if(newVar == true) {
+    //     //     return service.findPoll(pid)
+    //     //         .then(polls => setPolls(polls))
+    //     // } else {
+    //     //     return service.findAllPolls()
+    //     //         .then(polls => setPolls(polls))
+    //     // }
+    //     const allPollsFound = await findAllPolls()
+    //     setPolls(allPollsFound)
+    //     alert(allPollsFound.length)
+    // }
+    //
+    // useEffect( async () => {
+    //     const allPollsFound = await findAllPolls()
+    //     setPolls(allPollsFound)
+    //     alert(allPollsFound.length)
+    // }, []);
+
+    const placeholder = () => {
+        alert("hello")
     }
-    useEffect(() => {
-        let isMounted = true;
-        find()
-        return () => {isMounted = false;}
-    }, []);
-    const createPoll = () =>
-        service.createPoll(pollId, {poll})
-            .then(find)
-    const deletePoll = (pollid) =>
-        service.deletePoll(pollid)
-            .then(find)
+
+    const find = async() => {
+        const allPollsFound = await findAllPolls()
+        setPolls(allPollsFound)
+    }
+
+    useEffect(find, [])
+
+    // const createPoll = () => {
+    //     return
+    //     service.createPoll(pollId, {poll})
+    //         .then(find)
+    // }
+    //
+    // const deletePoll = (pollid) => {
+    //     return
+    //     service.deletePoll(pollid)
+    //         .then(find)
+    // }
     return(
         <div className="ttr-home">
             <div className="border border-bottom-0">
@@ -43,7 +68,7 @@ const PollHome = () => {
                             <input type="text" name ="prompt"></input><hr></hr>
                         </form>
                         <div className="col-2">
-                            <a onClick={createPoll}
+                            <a onClick={placeholder}
                                className={`btn btn-primary btn-lg rounded-pill fa-pull-left
                                                     fw-bold ps-4 pe-4`}>
                                 Poll
@@ -54,7 +79,7 @@ const PollHome = () => {
                     </div>
                 }
             </div>
-            <Polls polls={polls} deletePoll={deletePoll()}/>
+            <Polls polls={polls}/>
         </div>
 
 );
