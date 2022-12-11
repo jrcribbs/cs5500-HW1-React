@@ -10,7 +10,7 @@ const PollHome = () => {
     const [polls, setPolls] = useState([]);
     const [poll, setPoll] = useState('');
     let pollId = pid;
-
+//
     // const find = async () => {
     //     //enforce get all polls
     //     // let newVar = false
