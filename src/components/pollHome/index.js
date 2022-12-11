@@ -6,41 +6,19 @@ import {findAllPolls} from "../../services/polls-service";
 
 const PollHome = () => {
     const location = useLocation();
-    const {pid} = useParams();
+    const userId = "634466e38306079e670e180d";
     const [polls, setPolls] = useState([]);
     const [poll, setPoll] = useState('');
-    let pollId = pid;
-//
-    // const find = async () => {
-    //     //enforce get all polls
-    //     // let newVar = false
-    //     // if(newVar == true) {
-    //     //     return service.findPoll(pid)
-    //     //         .then(polls => setPolls(polls))
-    //     // } else {
-    //     //     return service.findAllPolls()
-    //     //         .then(polls => setPolls(polls))
-    //     // }
-    //     const allPollsFound = await findAllPolls()
-    //     setPolls(allPollsFound)
-    //     alert(allPollsFound.length)
-    // }
-    //
-    // useEffect( async () => {
-    //     const allPollsFound = await findAllPolls()
-    //     setPolls(allPollsFound)
-    //     alert(allPollsFound.length)
-    // }, []);
 
-    const placeholder = () => {
-        alert("hello")
+    const find = async () => {
+        if(userId) {
+            return service.findPoll(userId)
+                .then(polls => setPolls(polls))
+        } else {
+            return service.findAllPolls()
+                .then(polls => setPolls(polls))
+        }
     }
-
-    const find = async() => {
-        const allPollsFound = await findAllPolls()
-        setPolls(allPollsFound)
-    }
-
     useEffect(find, [])
     window.onload=function (){
         document.getElementById("qPrompt").onkeyup=function (){
@@ -50,20 +28,10 @@ const PollHome = () => {
             document.getElementById("test2").innerHTML = this.value;
         }
     }
-
-    // const createPoll = () => {
-    //     return
-    //     service.createPoll(pollId, {poll})
-    //         .then(find)
-    // }
-    //
-    // const deletePoll = (pollid) => {
-    //     return
-    //     service.deletePoll(pollid)
-    //         .then(find)
-
-
-    // }
+    const createPoll = () => {
+        service.createPoll(userId, {poll})
+            .then(find)
+    }
     return(
         <div className="ttr-home">
             <div className="border border-bottom-0">
@@ -74,12 +42,11 @@ const PollHome = () => {
                             <label>Prompt:</label>
                             <input id="qPrompt"/>
                             <span id="test">xxx</span>
-
                             <label>Answers:</label>
                             <input id="answers"/>
                             <span id="test2">xxx</span>
                         <div className="col-2">
-                            <a onClick={placeholder}
+                            <a onClick={createPoll}
                                className={`btn btn-primary btn-lg rounded-pill fa-pull-left
                                                     fw-bold ps-4 pe-4`}>
                                 Poll
