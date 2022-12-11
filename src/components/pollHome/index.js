@@ -3,6 +3,7 @@ import Polls from "../polls";
 import * as service from "../../services/polls-service";
 import {useLocation, useParams} from "react-router-dom";
 import {findAllPolls} from "../../services/polls-service";
+import Poll from "../polls/Poll";
 
 const PollHome = () => {
     const location = useLocation();
@@ -41,7 +42,14 @@ const PollHome = () => {
         setPolls(allPollsFound)
     }
 
+    const findOne = async() => {
+        const allPollsFound = await findAllPolls()
+        setPoll(allPollsFound[0]._id)
+
+    }
+
     useEffect(find, [])
+    useEffect(findOne, '')
     window.onload=function (){
         document.getElementById("qPrompt").onkeyup=function (){
             document.getElementById("test").innerHTML = this.value;
@@ -91,6 +99,7 @@ const PollHome = () => {
                 }
             </div>
             <Polls polls={polls}/>
+            <Poll poll={poll}/>
         </div>
 
 );
