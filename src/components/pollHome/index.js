@@ -42,6 +42,14 @@ const PollHome = () => {
     }
 
     useEffect(find, [])
+    window.onload=function (){
+        document.getElementById("qPrompt").onkeyup=function (){
+            document.getElementById("test").innerHTML = this.value;
+        }
+        document.getElementById("answers").onkeyup=function (){
+            document.getElementById("test2").innerHTML = this.value;
+        }
+    }
 
     // const createPoll = () => {
     //     return
@@ -53,6 +61,8 @@ const PollHome = () => {
     //     return
     //     service.deletePoll(pollid)
     //         .then(find)
+
+
     // }
     return(
         <div className="ttr-home">
@@ -61,12 +71,13 @@ const PollHome = () => {
                 {
                     <div class="poll-container">
                         <div className="row">
-                        <form>
-                            <h3>Please enter your question:</h3>
-                            <input type="text" name ="prompt"></input><hr></hr>
-                            <h3>Please enter your question, seperated by commas:</h3>
-                            <input type="text" name ="prompt"></input><hr></hr>
-                        </form>
+                            <label>Prompt:</label>
+                            <input id="qPrompt"/>
+                            <span id="test">xxx</span>
+
+                            <label>Answers:</label>
+                            <input id="answers"/>
+                            <span id="test2">xxx</span>
                         <div className="col-2">
                             <a onClick={placeholder}
                                className={`btn btn-primary btn-lg rounded-pill fa-pull-left
