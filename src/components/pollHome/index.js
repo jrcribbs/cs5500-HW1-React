@@ -2,14 +2,17 @@ import React, {useEffect, useState} from "react";
 import Polls from "../polls";
 import * as service from "../../services/polls-service";
 import {useLocation, useParams} from "react-router-dom";
-import {findAllPolls} from "../../services/polls-service";
+import {createPoll, findAllPolls} from "../../services/polls-service";
 import Poll from "../polls/Poll";
+import {findUserById} from "../../services/users-service";
 
 const PollHome = () => {
     const location = useLocation();
     const {pid} = useParams();
     const [polls, setPolls] = useState([]);
-    const [poll, setPoll] = useState('');
+    const [poll, setPoll] = useState('')
+    const [uQuestion, setQuestion] = useState('');
+    const [uOptions, setOptions] = useState('');
     let pollId = pid;
 //
     // const find = async () => {
@@ -50,20 +53,32 @@ const PollHome = () => {
 
     useEffect(find, [])
     useEffect(findOne, '')
-    window.onload=function (){
-        document.getElementById("qPrompt").onkeyup=function (){
-            document.getElementById("test").innerHTML = this.value;
-        }
-        document.getElementById("answers").onkeyup=function (){
-            document.getElementById("test2").innerHTML = this.value;
-        }
-    }
+
+    // function processInput(question, options) {
+    //     console.log(question, options)
+    //     var poll = {
+    //         question: processInput(document.getElementById('question').value, document.getElementById('options').value),
+    //         options: options,
+    //         optionCount:[options.length],
+    //         author: findUserById("634466e38306079e670e180d")
+    //
+    //     };
+    //
+    //     createPoll()
+    // }
 
     // const createPoll = () => {
-    //     return
-    //     service.createPoll(pollId, {poll})
+    //     const poll = {
+    //                 question: question,
+    //                 options: options,
+    //                 optionCount:[options.length],
+    //                 author: findUserById("634466e38306079e670e180d")
+    //     }
+    //     return service.createPoll(pollId, {poll})
     //         .then(find)
     // }
+
+
     //
     // const deletePoll = (pollid) => {
     //     return
@@ -72,34 +87,70 @@ const PollHome = () => {
 
 
     // }
+
+    /**
+     * this method converts user input into a JSON object, which is then
+     * directly sent to our api
+     * @param e
+     */
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const optionsArray = uOptions.split(",");
+        const optionCount = [].fill.call({ length: optionsArray.length }, 0) // initialize optioncount array to be 0s of length options
+        const author = findUserById("634466e38306079e670e180d")
+        const poll = {
+            question: uQuestion,
+            options: optionsArray ,
+            optionCount: optionCount,
+            author: author
+        };
+
+        fetch("http://localhost:4000/api/polls/users/634466e38306079e670e180d", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(poll)
+        }).then(() => {
+            console.log("new poll added")
+        })
+
+    }
+
     return(
         <div className="ttr-home">
             <div className="border border-bottom-0">
                 <h4 className="fw-bold p-2">Create Polls</h4>
-                {
-                    <div class="poll-container">
-                        <div className="row">
-                            <label>Prompt:</label>
-                            <input id="qPrompt"/>
-                            <span id="test">xxx</span>
+                <form onSubmit={handleSubmit}>
+                    <label>Enter your poll prompt:</label>
+                    <input
+                        type="text"
+                        required value={uQuestion}
+                        onChange={(e) => setQuestion(e.target.value)}
+                    />
+                    <label>Enter your poll options, separated by comma:</label>
+                    <input
+                        type="text"
+                        required value={uOptions}
+                        onChange={(e) => setOptions(e.target.value)}
+                    />
 
-                            <label>Answers:</label>
-                            <input id="answers"/>
-                            <span id="test2">xxx</span>
-                        <div className="col-2">
-                            <a onClick={placeholder}
-                               className={`btn btn-primary btn-lg rounded-pill fa-pull-left
+
+                <div className="col-2">
+                    <button><a className={`btn btn-primary btn-lg rounded-pill fa-pull-left
                                                     fw-bold ps-4 pe-4`}>
-                                Poll
-                            </a>
-                        </div>
-                        </div>
-
-                    </div>
-                }
+                        Poll
+                    </a></button>
+                </div>
+                </form>
             </div>
+
+            <p>
+                {uQuestion}
+                {uOptions}
+            </p>
+
             <Polls polls={polls}/>
             <Poll poll={poll}/>
+
         </div>
 
 );
