@@ -47,12 +47,11 @@ const PollHome = () => {
 
     const findOne = async() => {
         const allPollsFound = await findAllPolls()
-        setPoll(allPollsFound[0]._id)
-
+        setPoll(allPollsFound[0])
     }
 
     useEffect(find, [])
-    useEffect(findOne, '')
+    useEffect(findOne, null)
 
     // function processInput(question, options) {
     //     console.log(question, options)
@@ -85,7 +84,7 @@ const PollHome = () => {
     //     service.deletePoll(pollid)
     //         .then(find)
 
-
+    // <Poll poll={poll}/>
     // }
 
     /**
@@ -100,7 +99,7 @@ const PollHome = () => {
         const author = findUserById("634466e38306079e670e180d")
         const poll = {
             question: uQuestion,
-            options: optionsArray ,
+            options: optionsArray,
             optionCount: optionCount,
             author: author
         };
@@ -112,7 +111,7 @@ const PollHome = () => {
         }).then(() => {
             console.log("new poll added")
         })
-
+        window.location.reload() // refreshing page to display newly created poll
     }
 
     return(
@@ -149,7 +148,7 @@ const PollHome = () => {
             </p>
 
             <Polls polls={polls}/>
-            <Poll poll={poll}/>
+
 
         </div>
 
