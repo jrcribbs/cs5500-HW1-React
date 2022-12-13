@@ -35,17 +35,17 @@ const PollVote = () => {
       response: uResponse
     };
 
-    // voteOnPoll(pollID, userID, vote).then(r => console.log("voted"))
+    voteOnPoll(pollID, userID, vote).then(r => console.log("voted"))
 
 
-    fetch("http://localhost:4000/api/polls/vote/638cf327d81e81961231ffdb/users/634466e38306079e670e180d", {
-      method: "PUT",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(vote)
-    }).then(() => {
-      console.log("new poll added")
-    })
-
+  //   fetch("http://localhost:4000/api/polls/vote/638cf327d81e81961231ffdb/users/634466e38306079e670e180d", {
+  //     method: "PUT",
+  //     headers: {"Content-Type": "application/json"},
+  //     body: JSON.stringify(vote)
+  //   }).then(() => {
+  //     console.log("new poll added")
+  //   })
+  //
   }
 
   function unVote () {
@@ -55,15 +55,15 @@ const PollVote = () => {
       response: uResponse
     };
 
-    // unvoteOnPoll(pollID, userID, vote).then(r => console.log("unvoted for " + uResponse))
+    unvoteOnPoll(pollID, userID, vote).then(r => console.log("unvoted for " + uResponse))
 
-    fetch("http://localhost:4000/api/polls/unvote/638cf327d81e81961231ffdb/users/634466e38306079e670e180d", {
-      method: "PUT",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(vote)
-    }).then(() => {
-      console.log("unvoted for " + uResponse)
-    })
+    // fetch("http://localhost:4000/api/polls/unvote/638cf327d81e81961231ffdb/users/634466e38306079e670e180d", {
+    //   method: "PUT",
+    //   headers: {"Content-Type": "application/json"},
+    //   body: JSON.stringify(vote)
+    // }).then(() => {
+    //   console.log("unvoted for " + uResponse)
+    // })
 
   }
 

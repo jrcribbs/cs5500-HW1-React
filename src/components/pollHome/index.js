@@ -105,13 +105,15 @@ const PollHome = () => {
             author: author
         };
 
-        fetch("http://localhost:4000/api/polls/users/634466e38306079e670e180d", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(poll)
-        }).then(() => {
-            console.log("new poll added")
-        })
+        createPoll("634466e38306079e670e180d", poll).then(r => console.log("created poll"))
+
+        // fetch("http://localhost:4000/api/polls/users/634466e38306079e670e180d", {
+        //     method: "POST",
+        //     headers: {"Content-Type": "application/json"},
+        //     body: JSON.stringify(poll)
+        // }).then(() => {
+        //     console.log("new poll added")
+        // })
 
     }
 
@@ -132,7 +134,6 @@ const PollHome = () => {
                         required value={uOptions}
                         onChange={(e) => setOptions(e.target.value)}
                     />
-
 
                 <div className="col-2">
                     <button><a className={`btn btn-primary btn-lg rounded-pill fa-pull-left
