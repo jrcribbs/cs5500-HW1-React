@@ -119,4 +119,12 @@ describe ("Create and delete poll, valid inputs, vote and unvote", () => {
         expect(daoResp.answerOptionsCount[1]).toEqual(3)
         expect(daoResp.answerOptionsCount[2]).toEqual(0)
     })
+
+})
+
+//DO NOT RUN THIS TEST, only for smoketest
+test ("test find all polls", async() => {
+    const allPolls = await findAllPolls()
+    console.log(allPolls)
+    expect(3).toEqual(allPolls.length)
 })

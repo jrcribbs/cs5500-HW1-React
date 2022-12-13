@@ -1,12 +1,60 @@
-import React from "react";
-const Polls = () => {
-    return(
-        <h1>My Polls</h1>
+import React, {useEffect, useState} from "react";
+import Poll from "./Poll";
+import {findAllPolls} from "../../services/polls-service";
+
+function Polls({pollsi = [], deleteTuit}) {
+
+  const [polls, setPolls] = useState([]);
+
+  const find = async() => {
+    const allPollsFound = await findAllPolls()
+    setPolls(allPollsFound)
+  }
+
+
+  useEffect(find, [])
+
+    return (
+        <div>
+            <h1>My Polls</h1>
+            <ul>
+                { polls.map && polls.map(poll => {
+                    return (
+                        <Poll key={poll._id} poll={poll}/>
+                    );
+            })
+        }
+            </ul>
+        </div>
     );
-};
+}
+
 export default Polls;
 
+
+
 /*
+
+        <li className="p-2 ttr-tuit list-group-item d-flex rounded-0">
+            <div className="pe-2">
+                {
+                    poll.author &&
+                    <img src={`../images/${poll.author.username}.jpg`}
+                         className="ttr-tuit-avatar-logo rounded-circle"/>
+                }
+            </div>
+            <div className="w-100">
+                <i onClick={() => deletePoll(poll._id)} className="fas fa-remove fa-2x fa-pull-right"></i>
+                <h2
+                    className="fs-5">
+                    {poll.author && poll.author.username}
+                    @{poll.author && poll.author.username} -
+                    {new Date().toLocaleDateString()}</h2>
+                {poll.pollContent}
+
+            </div>
+        </li>
+
 import React from "react";
 import Polls from "../polls";
 import * as service from "../../services/polls-service";
@@ -82,4 +130,4 @@ const MyPolls = () => {
         </div>
     );
 };
-export default MyPolls;*/
+export default MyPolls; */

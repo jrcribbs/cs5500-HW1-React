@@ -14,7 +14,7 @@ function Navigation() {
     {label: 'Bookmarks', icon: 'fa-bookmark', path: '/bookmarks'},
     {label: 'Lists', icon: 'fa-list', path: '/lists'},
     {label: 'My Polls', icon: 'fa-poll', path: '/polls'},
-    {label: 'My Votes', icon: 'fa-vote-yea', path: '/votes'},
+    {label: 'My Votes', icon: 'fa-vote-yea', path: '/pollVote'},
     {label: 'Profile', icon: 'fa-user', path: '/profile'},
     {label: 'More', icon: 'fa-circle-ellipsis', path: '/more'},
     {label: 'Login', icon: 'fa-user', path: '/login'},

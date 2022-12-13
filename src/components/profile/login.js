@@ -16,6 +16,9 @@ export const Login = () => {
         {username: 'ellen_ripley', email: 'ellen_ripley', password: 'ellen_ripley', _id: '123'},
         {username: 'sarah', email: 'ellen_ripley', password: 'ellen_ripley', _id: '234'}
     ]
+    const alertHello = () => {
+        alert("hello")
+    }
 
     const deleteUser = (uid) =>
         service.deleteUser(uid)
