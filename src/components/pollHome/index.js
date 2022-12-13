@@ -47,12 +47,12 @@ const PollHome = () => {
 
     const findOne = async() => {
         const allPollsFound = await findAllPolls()
-        setPoll(allPollsFound[0]._id)
+        setPoll(allPollsFound[0])
 
     }
 
     useEffect(find, [])
-    useEffect(findOne, '')
+    useEffect(findOne, null)
 
     // function processInput(question, options) {
     //     console.log(question, options)

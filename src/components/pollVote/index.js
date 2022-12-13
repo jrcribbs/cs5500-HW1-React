@@ -7,7 +7,7 @@ import {findAllPolls} from "../../services/polls-service";
 
 const PollVote = () => {
   const [polls, setPolls] = useState([]);
-  const [poll, setPoll] = useState('')
+  const [poll, setPoll] = useState("")
 
   const find = async() => {
     const allPollsFound = await findAllPolls()
@@ -16,12 +16,11 @@ const PollVote = () => {
 
   const findOne = async() => {
     const allPollsFound = await findAllPolls()
-    setPoll(allPollsFound[0]._id)
-
+    setPoll(allPollsFound[0])
   }
 
   useEffect(find, [])
-  useEffect(findOne, '')
+  useEffect(findOne, null)
 
   return(
       <div id="poll-container">
