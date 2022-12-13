@@ -40,19 +40,19 @@ const PollHome = () => {
         alert("hello")
     }
 
-    const find = async() => {
-        const allPollsFound = await findAllPolls()
-        setPolls(allPollsFound)
-    }
+    // const find = async() => {
+    //     const allPollsFound = await findAllPolls()
+    //     setPolls(allPollsFound)
+    // }
+    //
+    // const findOne = async() => {
+    //     const allPollsFound = await findAllPolls()
+    //     setPoll(allPollsFound[0])
+    //
+    // }
 
-    const findOne = async() => {
-        const allPollsFound = await findAllPolls()
-        setPoll(allPollsFound[0])
-
-    }
-
-    useEffect(find, [])
-    useEffect(findOne, null)
+    // useEffect(find, [])
+    // useEffect(findOne, null)
 
     // function processInput(question, options) {
     //     console.log(question, options)
@@ -149,7 +149,6 @@ const PollHome = () => {
             </p>
 
             <Polls polls={polls}/>
-            <Poll poll={poll}/>
 
         </div>
 

@@ -1,10 +1,22 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Poll from "./Poll";
+import {findAllPolls} from "../../services/polls-service";
 
-function Polls({polls = [], deleteTuit}) {
+function Polls({pollsi = [], deleteTuit}) {
+
+  const [polls, setPolls] = useState([]);
+
+  const find = async() => {
+    const allPollsFound = await findAllPolls()
+    setPolls(allPollsFound)
+  }
+
+
+  useEffect(find, [])
+
     return (
         <div>
-            <h1>My polls</h1>
+            <h1>My Polls</h1>
             <ul>
                 { polls.map && polls.map(poll => {
                     return (
