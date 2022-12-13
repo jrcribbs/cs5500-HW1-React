@@ -1,6 +1,28 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import Polls from "../polls";
+import polls from "../polls";
+import Poll from "../polls/Poll";
+import poll from "../polls/Poll";
+import {findAllPolls} from "../../services/polls-service";
 
 const PollVote = () => {
+  const [polls, setPolls] = useState([]);
+  const [poll, setPoll] = useState('')
+
+  const find = async() => {
+    const allPollsFound = await findAllPolls()
+    setPolls(allPollsFound)
+  }
+
+  const findOne = async() => {
+    const allPollsFound = await findAllPolls()
+    setPoll(allPollsFound[0]._id)
+
+  }
+
+  useEffect(find, [])
+  useEffect(findOne, '')
+
   return(
       <div id="poll-container">
         <form>
@@ -14,7 +36,10 @@ const PollVote = () => {
                 <button type="submit">Submit</button><hr></hr>
         </form>
         <div id="results-container"></div>
+        <Polls polls={polls}/>
+        <Poll poll={poll}/>
     </div>
+
 
 );
 };
